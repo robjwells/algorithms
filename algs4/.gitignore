@@ -1,3 +1,4 @@
 algs4-data/
 slides/*.pdf
 code/lib/*.jar
+*.class
