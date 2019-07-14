@@ -12,29 +12,31 @@ class Ex1_1_23 {
 
         while (!StdIn.isEmpty()) {
             int key = StdIn.readInt();
-            int index = indexOf(whitelist, key);
+            int index = BinarySearch.indexOf(whitelist, key);
             if ((index == -1 && printAbsent) || (index != -1 && !printAbsent)) {
                 StdOut.println(key);
             }
         }
     }
 
-    static int indexOf(int[] a, int key) {
-        return indexOf(a, key, 0, a.length - 1, 0);
-    }
-
-    static int indexOf(int[] a, int key, int lo, int hi, int recursionDepth) {
-        if (lo > hi) {
-            return -1;
+    static class BinarySearch {
+        static int indexOf(int[] a, int key) {
+            return indexOf(a, key, 0, a.length - 1, 0);
         }
-        int mid = lo + (hi - lo) / 2;
-        if (key < a[mid]) {
-            return indexOf(a, key, lo, mid - 1, recursionDepth + 1);
-        } else if (key > a[mid]) {
-            return indexOf(a, key, mid + 1, hi, recursionDepth + 1);
-        } else {
-            // Found key
-            return mid;
+
+        static int indexOf(int[] a, int key, int lo, int hi, int recursionDepth) {
+            if (lo > hi) {
+                return -1;
+            }
+            int mid = lo + (hi - lo) / 2;
+            if (key < a[mid]) {
+                return indexOf(a, key, lo, mid - 1, recursionDepth + 1);
+            } else if (key > a[mid]) {
+                return indexOf(a, key, mid + 1, hi, recursionDepth + 1);
+            } else {
+                // Found key
+                return mid;
+            }
         }
     }
 }
