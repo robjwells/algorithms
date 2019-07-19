@@ -24,7 +24,7 @@ public class Matrix {
     public static double[][] mult(double[][] a, double[][] b) {
         // Tranpose b to allow use of dot product (cols become rows)
         double[][] transposedB = transpose(b);
-        double[][] result = new double[a.length][a.length];
+        double[][] result = new double[a.length][transposedB.length];
         for (int aRowIdx = 0; aRowIdx < a.length; aRowIdx++) {
             for (int bColIdx = 0; bColIdx < transposedB.length; bColIdx++) {
                 result[aRowIdx][bColIdx] = dot(a[aRowIdx], transposedB[bColIdx]);

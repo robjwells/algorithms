@@ -27,5 +27,21 @@ class Ex1_1_33 {
         for (double[] row : multResult) {
             StdOut.println(Arrays.toString(row));
         }
+
+        double[][] threeByTwoMatrix = new double[][] { new double[] {1, 2}, new double[] {3, 4}, new double[] {5, 6} };
+        StdOut.println("Matrix `3x2`:");
+        for (double[] row : threeByTwoMatrix) {
+            StdOut.println(Arrays.toString(row));
+        }
+        double[][] twoByFourMatrix = new double[][] { new double[] {1, 2, 3, 4}, new double[] {5, 6, 7, 8} };
+        StdOut.println("Matrix `2x4`:");
+        for (double[] row : twoByFourMatrix) {
+            StdOut.println(Arrays.toString(row));
+        }
+        double[][] unequalMultResult = Matrix.mult(threeByTwoMatrix, twoByFourMatrix);
+        StdOut.println("Matrix `3x2` * `2x4`:");
+        for (double[] row : unequalMultResult) {
+            StdOut.println(Arrays.toString(row));
+        }
     }
 }
