@@ -13,24 +13,44 @@ public class Matrix {
         int aRows = a.length;
         int aCols = a[0].length;
 
+        // Iterative
         double[][] resultMatrix = new double[aCols][aRows];
         for (int rowIdx = 0; rowIdx < aRows; rowIdx++) {
             for (int colIdx = 0; colIdx < aCols; colIdx++) {
                 resultMatrix[colIdx][rowIdx] = a[rowIdx][colIdx];
             }
         }
+
+        // Functional
+        // double[][] resultMatrix = IntStream.range(0, aCols)
+        //     .mapToObj(colIdx -> IntStream.range(0, aRows)
+        //                             .mapToDouble(rowIdx -> a[rowIdx][colIdx])
+        //                             .toArray())
+        //     .toArray(double[][]::new);
+
         return resultMatrix;
     }
 
     public static double[][] mult(double[][] a, double[][] b) {
         // Tranpose b to allow use of dot product (cols become rows)
         double[][] transposedB = transpose(b);
+
+        // Iterative
         double[][] result = new double[a.length][transposedB.length];
         for (int aRowIdx = 0; aRowIdx < a.length; aRowIdx++) {
             for (int bColIdx = 0; bColIdx < transposedB.length; bColIdx++) {
                 result[aRowIdx][bColIdx] = dot(a[aRowIdx], transposedB[bColIdx]);
             }
         }
+
+        // Functional
+        // double[][] result = IntStream.range(0, a.length)    // Range over a’s row indexes
+        //     .mapToObj(
+        //         aRowIdx -> IntStream.range(0, transposedB.length)   // Range over b’s column indexes (row indexes when transposed)
+        //             .mapToDouble(bColIdx -> dot(a[aRowIdx], transposedB[bColIdx]))
+        //             .toArray()
+        //     ).toArray(double[][]::new);
+
         return result;
     }
 
