@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Matrix {
@@ -32,4 +33,66 @@ public class Matrix {
         }
         return result;
     }
+
+    /**
+     * Matrix-vector multiplication
+     *
+     * Number of columns in matrix should match the length of the vector.
+     *
+     * Given a matrix A = [a b]
+     *                    [c d]
+     * And a vector V = [x]
+     *                  [y]
+     *
+     * Result is a vector [ax + by]
+     *                    [cx + dy]
+     *
+     * Reference:
+     * https://reference.wolfram.com/language/tutorial/MultiplyingVectorsAndMatrices.html
+     */
+    public static double[] mult(double[][] a, double[] x) {
+        // // Imperative
+        // double[] result = new double[a.length];
+        // for (int rowIdx = 0; rowIdx < a.length; rowIdx++) {
+        //     result[rowIdx] = dot(a[rowIdx], x);
+        // }
+        // System.out.println("Imperative: " + Arrays.toString(result));
+
+        // Functional
+        return Arrays.stream(a)
+            .mapToDouble(row -> dot(row, x))
+            .toArray();
+    }
+
+    /**
+     * Vector-matrix multiplication
+     *
+     * Number of rows in matrix should match the length of the vector.
+     *
+     * Given a matrix A = [a b]
+     *                    [c d]
+     * And a vector V = [x]
+     *                  [y]
+     *
+     * Result is a vector [ax + cy]
+     *                    [bx + dy]
+     *
+     * Reference:
+     * https://reference.wolfram.com/language/tutorial/MultiplyingVectorsAndMatrices.html
+     */
+    public static double[] mult(double[] y, double[][] a) {
+        // Imperative
+        // double[][] transposed = transpose(a);
+        // double[] result = new double[a[0].length];
+        // for (int colIdx = 0; colIdx < a[0].length; colIdx++) {
+        //     result[colIdx] = dot(transposed[colIdx], y);
+        // }
+        // System.out.println("Imperative: " + Arrays.toString(result));
+
+        // Functional
+        return Arrays.stream(transpose(a))  // Turn columns into rows
+            .mapToDouble(col -> dot(col, y))
+            .toArray();
+    }
+
 }

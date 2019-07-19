@@ -43,5 +43,21 @@ class Ex1_1_33 {
         for (double[] row : unequalMultResult) {
             StdOut.println(Arrays.toString(row));
         }
+
+
+        double[][] m = new double[][] { new double[] {1, 2}, new double[] {3, 4}};
+        double[] v = new double[] { 1, 2 };
+        StdOut.println("Matrix `m`:");
+        for (double[] row : m) {
+            StdOut.println(Arrays.toString(row));
+        }
+
+        double[] matrixVecMultResult = Matrix.mult(m, v);
+        StdOut.println("Matrix `m` multiplied by " + Arrays.toString(v));
+        StdOut.println(Arrays.toString(matrixVecMultResult));
+
+        double[] vecMatrixMultResult = Matrix.mult(v, m);
+        StdOut.println("Vector " + Arrays.toString(v) + " multiplied by matrix `m`");
+        StdOut.println(Arrays.toString(vecMatrixMultResult));
     }
 }
