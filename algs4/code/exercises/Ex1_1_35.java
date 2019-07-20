@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -8,23 +6,29 @@ class Ex1_1_35 {
     private static int ARRAYLENGTH = 2 * SIDES + 1;
     private static double COMBINATIONS = Math.pow(SIDES, 2);
 
+    /**
+     * After conducting 10,000 simulations (taking 1 hour), the average number
+     * of n-dice-throws needed for the observations to match the calculated
+     * probabilities to three decimal places was 3,652,024.
+     */
     public static void main(String[] args) {
+        int simulationsToRun = Integer.parseInt(args[0]);
         double[] probabilities = exactProbabilities();
-        int totalRuns = 0;
-        int simulationsToRun = 10000;
+        long totalTrials = 0;
         for (int i = 0; i < simulationsToRun; i++) {
             int trialsNeededForAccuracy = simulateToAccuracy(probabilities, 3);
-            totalRuns += trialsNeededForAccuracy;
+            totalTrials += trialsNeededForAccuracy;
         }
         StdOut.printf(
-                "After %s simulations, average trials needed for 3-place accuracy: %d\n",
+                "After %s simulations, average trials needed for 3-place accuracy: %,d\n",
                 simulationsToRun,
-                totalRuns / simulationsToRun
+                totalTrials / simulationsToRun
         );
     }
 
     static boolean checkAccuracy(int toPlaces, double[] reference, double[] candidate) {
         double scale = Math.pow(10, toPlaces);
+        // StdOut.println((int) (reference[3] * scale));
         for (int idx = 0; idx < reference.length; idx++) {
             if ((int) (reference[idx] * scale) != (int) (candidate[idx] * scale)) {
                 return false;
@@ -41,6 +45,12 @@ class Ex1_1_35 {
         return percentages;
     }
 
+    static void updatePercentagesArray(int[] observations, int trials, double[] percentages) {
+        for (int i = 0; i < observations.length; i++) {
+            percentages[i] = observations[i] / (double) trials;
+        }
+    }
+
     static int simulateToAccuracy(double[] reference, int accuracy) {
         double[] probabilities = reference;
         int[] observations = new int[ARRAYLENGTH];
@@ -50,7 +60,7 @@ class Ex1_1_35 {
             trials++;
             int throwSum = randomThrow() + randomThrow();
             observations[throwSum]++;
-            percentages = makePercentageArray(observations, trials);
+            updatePercentagesArray(observations, trials, percentages);
         }
         return trials;
     }
