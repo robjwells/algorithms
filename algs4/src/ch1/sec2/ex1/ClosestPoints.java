@@ -58,6 +58,12 @@ public class ClosestPoints {
         return closestPair;
     }
 
+    /**
+     * Return the Euclidean distance (in the 2D plane) between points <code>a</code> and <code>b</code>.
+     * @param a one point
+     * @param b another point
+     * @return the Euclidean distance between <code>a</code> and <code>b</code>
+     */
     static double euclideanDistance(Point2D a, Point2D b) {
         return sqrt(pow(b.getX() - a.getX(), 2) + pow(b.getY() - a.getY(), 2));
     }
