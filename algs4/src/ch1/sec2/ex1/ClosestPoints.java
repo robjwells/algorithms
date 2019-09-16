@@ -5,13 +5,11 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class ClosestPoints {
     public static void main(String[] args) {
         int totalPoints = StdIn.readInt();
-        Random random = new Random();
         Point2D[] points = IntStream.range(0, totalPoints)
                 .mapToObj(i -> new Point2D(StdRandom.uniform(), StdRandom.uniform()))
                 .toArray(Point2D[]::new);
