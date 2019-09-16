@@ -44,26 +44,4 @@ class Ex1_1_31 {
         StdDraw.show();
     }
 
-    static class Point2D {
-        private final double x;
-        private final double y;
-
-        Point2D(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public double getX() {
-            return x;
-        }
-
-        public double getY() {
-            return y;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("Point2D [x=%s, y=%s]", x, y);
-        }
-    }
 }
