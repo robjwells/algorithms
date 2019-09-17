@@ -20,8 +20,9 @@ public class Parentheses {
 
     /**
      * Check if brackets in the <code>input</code> string are balanced.
-     *
+     * <p>
      * The brackets considered are (, [ and {.
+     *
      * @param input a string consisting solely of characters in <code>()[]{}</code>
      * @return <code>true</code> if all brackets in <code>input</code> are balanced, else <code>false</code>
      */
