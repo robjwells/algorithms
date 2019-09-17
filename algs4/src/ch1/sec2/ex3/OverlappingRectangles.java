@@ -6,7 +6,26 @@ import edu.princeton.cs.algs4.*;
 import java.util.*;
 import java.util.stream.IntStream;
 
+/**
+ * Exercise 1.2.3
+ * <strong>Problem statement:</strong> Write an Interval2D client that takes command-line arguments
+ * <code>N</code>, <code>min</code>, and <code>max</code> and generates <code>N</code> random
+ * 2D intervals whose width and height are uniformly distributed between <code>min</code>
+ * and <code>max</code> in the unit square.
+ * <p>
+ * Draw them on <code>StdDraw</code> and print the number of pairs of intervals that intersect
+ * and the number of intervals that are contained in one another.
+ *
+ * <strong>Commentary (RW):</strong> The "contains" part of this exercise would really be
+ * significantly more elegant if <code>Interval2D</code> had a "contains" method (which
+ * would take another <code>Interval2D</code>). As it is, having to store what should be
+ * temporary <code>Interval1D</code> pairs, it’s a bit of a mess.
+ * <p>
+ * TODO: Subclass Interval2D and add a "contains" method.
+ */
 public class OverlappingRectangles {
+    // Global map of rectangles to their horizontal & vertical 1D intervals.
+    // Required to calculate containment.
     private static Map<Interval2D, Pair<Interval1D>> intervalMap = new HashMap<>();
 
     public static void main(String[] args) {
@@ -28,6 +47,15 @@ public class OverlappingRectangles {
         StdOut.printf("Total Interval2Ds that fully contain another: %s\n", totalContainedRects);
     }
 
+    /**
+     * Return an <code>Interval2D</code> at a random position within the unit square with side
+     * length in [minExtent, maxExtent), ensuring the interval is fully within the
+     * unit square.
+     *
+     * @param minExtent the minimum length of the rectangle’s sides
+     * @param maxExtent the maximum length of the rectangle’s sides
+     * @return an <code>Interval2D</code> within the unit square at a random position
+     */
     static Interval2D randomRectInUnitSquare(double minExtent, double maxExtent) {
         double width = StdRandom.uniform(minExtent, maxExtent);
         double height = StdRandom.uniform(minExtent, maxExtent);
@@ -43,12 +71,24 @@ public class OverlappingRectangles {
         return rect;
     }
 
+    /**
+     * Draw each <code>Interval2D</code> in <code>rects</code> within the unit square as an
+     * unfilled rectangle.
+     *
+     * @param rects the <code>Interval2D</code> instances to draw
+     */
     static void drawRects(Interval2D[] rects) {
         StdDraw.setScale(-0.1, 1.1);
         Arrays.stream(rects).forEach(Interval2D::draw);
         StdDraw.show();
     }
 
+    /**
+     * Return a list of <code>Interval2D</code> pairs which intersect at some point
+     *
+     * @param rects the full array of <code>Interval2D</code> instances to consider
+     * @return a list of unique <code>Interval2D</code> pairs that intersect
+     */
     static List<Pair<Interval2D>> findIntersectingRects(Interval2D[] rects) {
         ArrayList<Pair<Interval2D>> intersecting = new ArrayList<>(rects.length);
         for (int first = 0; first < rects.length; first++) {
