@@ -2,6 +2,7 @@ package ch1.sec2.ex3;
 
 import edu.princeton.cs.algs4.*;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class OverlappingRectangles {
@@ -9,9 +10,10 @@ public class OverlappingRectangles {
 //        int N = StdIn.readInt();
 //        int min = StdIn.readInt();
 //        int max = StdIn.readInt();
-        IntStream.range(0, 10)
+        Interval2D[] rects = IntStream.range(0, 10)
                 .mapToObj(i -> randomRectInUnitSquare(0.25, 0.75))
-                .forEach(StdOut::println);
+                .toArray(Interval2D[]::new);
+        drawRects(rects);
     }
 
     static Interval2D randomRectInUnitSquare(double minExtent, double maxExtent) {
@@ -22,5 +24,11 @@ public class OverlappingRectangles {
         Interval1D xInterval = new Interval1D(xOrigin, xOrigin + width);
         Interval1D yInterval = new Interval1D(yOrigin, yOrigin + height);
         return new Interval2D(xInterval, yInterval);
+    }
+
+    static void drawRects(Interval2D[] rects) {
+        StdDraw.setScale(-0.1, 1.1);
+        Arrays.stream(rects).forEach(Interval2D::draw);
+        StdDraw.show();
     }
 }
