@@ -3,6 +3,8 @@ package ch1.sec2.ex12;
 import edu.princeton.cs.algs4.Date;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Objects;
+
 public class Transaction {
     private final String name;
     private final Date date;
@@ -58,5 +60,22 @@ public class Transaction {
     @Override
     public String toString() {
         return String.format("%s %s %.2f", name, date, amount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        // This is auto-generated, but I’m not clear on whether Double.compare does anything
+        // particular to make the double comparison more robust than just `amount == that.amount`
+        return Double.compare(that.amount, amount) == 0 &&
+                name.equals(that.name) &&
+                date.equals(that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, date, amount);
     }
 }
