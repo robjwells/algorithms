@@ -9,6 +9,9 @@ public class Transaction {
     private final double amount;
 
     public Transaction(String who, Date when, double amount) {
+        if (who == null || when == null) {
+            throw new IllegalArgumentException("who and when cannot be null");
+        }
         this.name = who;
         this.date = when;
         this.amount = amount;
