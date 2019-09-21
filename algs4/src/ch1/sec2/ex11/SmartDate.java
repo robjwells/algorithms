@@ -1,18 +1,35 @@
 package ch1.sec2.ex11;
 
+import java.util.Arrays;
+
 public class SmartDate {
     private final static int[] monthLengths = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private final int month;
     private final int day;
     private final int year;
 
-    SmartDate(int month, int day, int year) {
+    public SmartDate(int month, int day, int year) {
         if (!isValid(month, day, year)) {
             throw new IllegalDateException();
         }
         this.month = month;
         this.day = day;
         this.year = year;
+    }
+
+    public SmartDate(String date) {
+        String[] parts = date.trim().split("/");
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Given date does not have three / separated parts.");
+        }
+
+        int[] converted = Arrays.stream(parts).mapToInt(Integer::parseInt).toArray();
+        if (!isValid(converted[0], converted[1], converted[2])) {
+            throw new IllegalDateException();
+        }
+        this.month = converted[0];
+        this.day = converted[1];
+        this.year = converted[2];
     }
 
     private static boolean isValid(int month, int day, int year) {
