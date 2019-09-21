@@ -36,6 +36,18 @@ public class SmartDate {
         return (day >= 1 && monthInRange(month) && day <= monthLengths[month]);
     }
 
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
     /**
      * Returns the date’s English weekday name as a string, computed using Gauss’s algorithm.
      * <p>
