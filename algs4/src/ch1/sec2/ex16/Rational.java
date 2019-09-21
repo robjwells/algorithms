@@ -2,6 +2,9 @@ package ch1.sec2.ex16;
 
 import java.util.Objects;
 
+import static java.lang.Math.addExact;
+import static java.lang.Math.multiplyExact;
+
 /**
  * Ex 1.2.16
  * <p>
@@ -80,8 +83,11 @@ public class Rational {
 
     public Rational plus(Rational other) {
         return new Rational(
-                this.numerator * other.denominator + other.numerator * this.denominator,
-                this.denominator * other.denominator
+                addExact(
+                        multiplyExact(this.numerator, other.denominator),
+                        multiplyExact(other.numerator, this.denominator)
+                ),
+                multiplyExact(this.denominator, other.denominator)
         );
     }
 
@@ -91,15 +97,15 @@ public class Rational {
 
     public Rational times(Rational other) {
         return new Rational(
-                this.numerator * other.numerator,
-                this.denominator * other.denominator
+                multiplyExact(this.numerator, other.numerator),
+                multiplyExact(this.denominator, other.denominator)
         );
     }
 
     public Rational divides(Rational other) {
         return new Rational(
-                this.numerator * other.denominator,
-                this.denominator * other.numerator
+                multiplyExact(this.numerator, other.denominator),
+                multiplyExact(this.denominator, other.numerator)
         );
     }
 
