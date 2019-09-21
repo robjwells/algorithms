@@ -1,16 +1,16 @@
 package ch1.sec2.ex13;
 
-import edu.princeton.cs.algs4.Date;
+import ch1.sec2.ex11.SmartDate;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Objects;
 
 public class Transaction {
     private final String name;
-    private final Date date;
+    private final SmartDate date;
     private final double amount;
 
-    public Transaction(String who, Date when, double amount) {
+    public Transaction(String who, SmartDate when, double amount) {
         if (who == null || when == null) {
             throw new IllegalArgumentException("who and when cannot be null");
         }
@@ -28,7 +28,7 @@ public class Transaction {
         }
 
         this.name = parts[0];
-        this.date = new Date(parts[1]); // Throws IllegalArgumentException if invalid
+        this.date = new SmartDate(parts[1]); // Throws IllegalArgumentException if invalid
         try {
             this.amount = Double.parseDouble(parts[2]);
         } catch (NumberFormatException nfe) {
@@ -49,7 +49,7 @@ public class Transaction {
         return name;
     }
 
-    public Date when() {
+    public SmartDate when() {
         return date;
     }
 
