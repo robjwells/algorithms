@@ -1,4 +1,4 @@
-package ch1.sec2.ex6;
+package ch1.sec2.ex06;
 
 class Ex1_2_6 {
     public static void main(String[] args) {

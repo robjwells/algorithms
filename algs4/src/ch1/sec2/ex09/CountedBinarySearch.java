@@ -1,4 +1,4 @@
-package ch1.sec2.ex9;
+package ch1.sec2.ex09;
 
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.In;

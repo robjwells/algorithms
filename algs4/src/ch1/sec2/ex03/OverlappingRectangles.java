@@ -1,4 +1,4 @@
-package ch1.sec2.ex3;
+package ch1.sec2.ex03;
 
 import com.robjwells.util.Pair;
 import edu.princeton.cs.algs4.*;

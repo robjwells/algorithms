@@ -1,4 +1,4 @@
-package ch1.sec2.ex1;
+package ch1.sec2.ex01;
 
 import ch1.sec1.ex31.Point2D;
 import edu.princeton.cs.algs4.StdDraw;

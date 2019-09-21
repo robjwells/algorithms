@@ -1,4 +1,4 @@
-package ch1.sec2.ex2;
+package ch1.sec2.ex02;
 
 import com.robjwells.util.Pair;
 import edu.princeton.cs.algs4.Interval1D;
