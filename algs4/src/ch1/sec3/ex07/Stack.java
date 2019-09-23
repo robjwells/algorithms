@@ -31,7 +31,7 @@ public class Stack<Item> {
 
     /**
      * Ex 1.3.7: Add a method <code>peek()</code> to <code>Stack</code> that returns
-     * the most recently inserted item on the stack (wihtout popping it).
+     * the most recently inserted item on the stack (without popping it).
      *
      * @return the item most recently pushed onto the stack, or <code>null</code> if empty
      */
