@@ -1,8 +1,23 @@
 package ch1.sec3.ex07;
 
-public class Stack<Item> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+public class Stack<Item> implements Iterable<Item> {
     private Node first; // top of stack (most recently added node)
     private int n;      // number of items
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.stream().map(i -> i * 2).forEach(System.out::println);
+    }
 
     public boolean isEmpty() {
         return first == null;
@@ -38,6 +53,35 @@ public class Stack<Item> {
     public Item peek() {
         if (first == null) return null;
         return first.item;
+    }
+
+    public Stream<Item> stream() {
+        return StreamSupport.stream(
+                Spliterators.spliteratorUnknownSize(iterator(), Spliterator.NONNULL),
+                false
+        );
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new Iterator<Item>() {
+            private Node current = first;
+
+            @Override
+            public boolean hasNext() {
+                return (current != null);
+            }
+
+            @Override
+            public Item next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                Item item = current.item;
+                current = current.next;
+                return item;
+            }
+        };
     }
 
     // nested class to define nodes
