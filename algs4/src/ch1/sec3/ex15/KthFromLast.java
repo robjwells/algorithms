@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
  * Exercise 1.3.15: Write a <tt>Queue</tt> client that takes a command-line argument
  * <tt>k</tt> and prints the <tt>k</tt>th from the last string found on standard
  * input (assuming that standard input has <tt>k</tt> or more strings).
- *
+ * <p>
  * Really this would make more sense as a <tt>Stack</tt> client as we’re focused on
  * the end (ie most recent) of the input.
  */
