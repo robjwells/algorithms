@@ -84,6 +84,8 @@ public class LinkedList<T> implements Iterable<T> {
     /**
      * Remove the <tt>k</tt>th element of the linked list, if it exists.
      *
+     * Ex 1.3.20.
+     *
      * @param k the position of the element to remove (zero-based)
      */
     void delete(int k) {
