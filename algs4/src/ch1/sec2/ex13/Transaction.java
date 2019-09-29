@@ -1,6 +1,8 @@
 package ch1.sec2.ex13;
 
 import ch1.sec2.ex11.SmartDate;
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Objects;
@@ -77,5 +79,20 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Objects.hash(name, date, amount);
+    }
+
+    /**
+     * Ex 1.3.17: Read all transactions from standard input.
+     */
+    public static Transaction[] readAllTransactions() {
+        Queue<String> queue = new Queue<>();
+        while (!StdIn.isEmpty()) {
+            queue.enqueue(StdIn.readLine());
+        }
+        Transaction[] transactions = new Transaction[queue.size()];
+        for (int index = 0; index < transactions.length; index++) {
+            transactions[index] = new Transaction(queue.dequeue());
+        }
+        return transactions;
     }
 }
