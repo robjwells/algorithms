@@ -1,5 +1,8 @@
 package ch1.sec2.ex11;
 
+import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.StdIn;
+
 import java.util.Arrays;
 
 public class SmartDate {
@@ -53,6 +56,23 @@ public class SmartDate {
         return (day >= 1 && monthInRange(month) && day <= monthLengths[month]);
     }
 
+    /**
+     * Ex 1.3.16: Write a static method <tt>readALlDates()</tt> for <tt>Date</tt> that
+     * reads dates from standard input in the format specified in the table on page 119
+     * [mm/dd/yyy] and returns an array containing them.
+     */
+    public static SmartDate[] readAllDates() {
+        Queue<String> queue = new Queue<>();
+        while (!StdIn.isEmpty()) {
+            queue.enqueue(StdIn.readLine());
+        }
+        SmartDate[] dates = new SmartDate[queue.size()];
+        for (int index = 0; index < dates.length; index++) {
+            dates[index] = new SmartDate(queue.dequeue());
+        }
+        return dates;
+    }
+
     public int getMonth() {
         return month;
     }
@@ -94,5 +114,13 @@ public class SmartDate {
                 7
         );
         return names[w];
+    }
+
+    @Override
+    /**
+     * Formats the instance into ISO 8601 format (YYYY-MM-DD).
+     */
+    public String toString() {
+        return String.format("%d-%02d-%02d", year, month, day);
     }
 }
