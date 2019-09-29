@@ -117,7 +117,7 @@ public class LinkedList<T> implements Iterable<T> {
     boolean find(T key) {
         Node<T> current = first;
         while (current != null) {
-            if (current.info.equals(T)) {
+            if (current.info.equals(key)) {
                 return true;
             }
             current = current.next;
