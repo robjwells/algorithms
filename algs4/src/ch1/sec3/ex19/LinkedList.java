@@ -83,7 +83,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Remove the <tt>k</tt>th element of the linked list, if it exists.
-     *
+     * <p>
      * Ex 1.3.20.
      *
      * @param k the position of the element to remove (zero-based)
@@ -103,6 +103,26 @@ public class LinkedList<T> implements Iterable<T> {
                 previous.next = current.next;
             }
         }
+    }
+
+    /**
+     * Return true if <tt>key</tt> is present in the info field of some <tt>Node</tt>
+     * in the linked list.
+     * <p>
+     * Ex 1.3.21.
+     *
+     * @param key the value to search for
+     * @return true if <tt>key</tt> was found, else false
+     */
+    boolean find(T key) {
+        Node<T> current = first;
+        while (current != null) {
+            if (current.info.equals(T)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
     }
 
     @Override
