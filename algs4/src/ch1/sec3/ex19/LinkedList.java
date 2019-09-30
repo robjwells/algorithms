@@ -65,6 +65,30 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
+     * Insert node <tt>second</tt> after node <tt>first</tt>.
+     *
+     * Does nothing if either argument is null.
+     *
+     * Ex 1.3.25. What is unclear is what happens to any nodes linked after
+     * <tt>second</tt> (ie <tt>second.next</tt>): does <tt>second.next</tt>
+     * get set to the original <tt>first.next</tt>? Or is it the other way
+     * around? Do we keep the chain from <tt>first</tt> or <tt>second</tt>?
+     *
+     * @param first the node after which <tt>second</tt> is inserted
+     * @param second the node inserted after <tt>first</tt>
+     * @param <T> the type of the value stored by the two nodes
+     */
+    static <T> void insertAfter(Node<T> first, Node<T> second) {
+        if (first == null || second == null) {
+            return;
+        }
+        first.next = second; // Keep second's following nodes
+        // OR:
+        // second.next = first.next;
+        // first.next = second;
+    }
+
+    /**
      * Add <tt>info</tt> to the head of the linked-list, as with a stack.
      *
      * @param info the value to put at the head of the list
