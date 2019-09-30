@@ -89,6 +89,31 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
+     * Remove any nodes that contain <tt>key</tt> in their <tt>info</tt> field.
+     * <p>
+     * Ex 1.3.26.
+     *
+     * @param key the value to search for
+     */
+    void remove(T key) {
+        // Handle the key-containing nodes at the front
+        while (first != null && first.info.equals(key)) {
+            first = first.next;
+        }
+        if (first == null) {
+            return;
+        }
+        Node<T> previous = first;
+        Node<T> current = first.next;
+        while (current != null) {
+            if (current.info.equals(key)) {
+                previous.next = current.next;
+            }
+            current = current.next;
+        }
+    }
+
+    /**
      * Add <tt>info</tt> to the head of the linked-list, as with a stack.
      *
      * @param info the value to put at the head of the list
