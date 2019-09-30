@@ -47,6 +47,24 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
+     * Remove the node immediately after the given <tt>node</tt>.
+     *
+     * Does nothing if <tt>node</tt> has no next node.
+     *
+     * Ex 1.3.24.
+     *
+     * @param node the node whose neighbour is to be removed
+     * @param <T> type of the value stored by the node; not used in this method
+     *           — only present as the wildcard (?) won't work with assignment.
+     */
+    static <T> void removeAfter(Node<T> node) {
+        if (node == null || node.next == null) {
+            return;
+        }
+        node.next = node.next.next;
+    }
+
+    /**
      * Add <tt>info</tt> to the head of the linked-list, as with a stack.
      *
      * @param info the value to put at the head of the list
