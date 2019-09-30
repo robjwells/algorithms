@@ -89,6 +89,31 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
+     * Return the maximum value stored in the linked list.
+     * <p>
+     * Ex 1.3.27. Implemented for types that implement Comparable
+     * rather than just integers as specified in the question.
+     *
+     * @param first the first <tt>Node</tt> in the linked list to search
+     * @param <T>   the <tt>Comparable</tt> type stored in the linked list
+     * @return the maximum <tt>T</tt> in the linked list
+     */
+    static <T extends Comparable<T>> T max(Node<T> first) {
+        if (first == null) {
+            return null;
+        }
+        T max = first.info;
+        Node<T> current = first.next;
+        while (current != null) {
+            if (current.info.compareTo(max) > 0) {
+                max = current.info;
+            }
+            current = current.next;
+        }
+        return max;
+    }
+
+    /**
      * Remove any nodes that contain <tt>key</tt> in their <tt>info</tt> field.
      * <p>
      * Ex 1.3.26.
