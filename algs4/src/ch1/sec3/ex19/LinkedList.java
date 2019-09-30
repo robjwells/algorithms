@@ -48,14 +48,14 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Remove the node immediately after the given <tt>node</tt>.
-     *
+     * <p>
      * Does nothing if <tt>node</tt> has no next node.
-     *
+     * <p>
      * Ex 1.3.24.
      *
      * @param node the node whose neighbour is to be removed
-     * @param <T> type of the value stored by the node; not used in this method
-     *           — only present as the wildcard (?) won't work with assignment.
+     * @param <T>  type of the value stored by the node; not used in this method
+     *             — only present as the wildcard (?) won't work with assignment.
      */
     static <T> void removeAfter(Node<T> node) {
         if (node == null || node.next == null) {
@@ -66,17 +66,17 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Insert node <tt>second</tt> after node <tt>first</tt>.
-     *
+     * <p>
      * Does nothing if either argument is null.
-     *
+     * <p>
      * Ex 1.3.25. What is unclear is what happens to any nodes linked after
      * <tt>second</tt> (ie <tt>second.next</tt>): does <tt>second.next</tt>
      * get set to the original <tt>first.next</tt>? Or is it the other way
      * around? Do we keep the chain from <tt>first</tt> or <tt>second</tt>?
      *
-     * @param first the node after which <tt>second</tt> is inserted
+     * @param first  the node after which <tt>second</tt> is inserted
      * @param second the node inserted after <tt>first</tt>
-     * @param <T> the type of the value stored by the two nodes
+     * @param <T>    the type of the value stored by the two nodes
      */
     static <T> void insertAfter(Node<T> first, Node<T> second) {
         if (first == null || second == null) {
