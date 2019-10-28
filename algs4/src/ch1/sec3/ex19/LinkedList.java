@@ -11,7 +11,26 @@ public class LinkedList<T> implements Iterable<T> {
     public static void main(String[] args) {
         testRemoveLast();
         testDeleteKth();
+        testReverse();
     }
+
+    static void testReverse() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        StdOut.println("Reverse setup:");
+        for (int i : list) {
+            StdOut.print(i + " ");
+        }
+        StdOut.println("\nReversed:");
+        list.reverse();
+        for (int i : list) {
+            StdOut.print(i + " ");
+        }
+        StdOut.println();
+    }
+
 
     static void testDeleteKth() {
         LinkedList<Integer> list = new LinkedList<>();
@@ -132,6 +151,42 @@ public class LinkedList<T> implements Iterable<T> {
             return first.info;
         }
         return first.info.compareTo(maxRest) > 0 ? first.info : maxRest;
+    }
+
+
+    /**
+     * Reverse the <tt>LinkedList</tt> in place by calling the <tt>reverse</tt> static method
+     * with the current <tt>first</tt> <tt>Node</tt>.
+     * <p>
+     * Ex 1.3.30.
+     */
+    public void reverse() {
+        first = reverse(first);
+    }
+
+    /**
+     * Destructively reverse the linked list of nodes where <tt>first</tt> is at the start.
+     *
+     * @param first the first <tt>Node</tt> in a linked list of nodes.
+     * @param <T>   the type stored by the <tt>Node</tt>
+     * @return the new first <tt>Node</tt> in the reversed list (previously the end <tt>Node</tt>).
+     */
+    private static <T> Node<T> reverse(Node<T> first) {
+        if (first == null) {
+            return null;
+        }
+
+        Node<T> current = first;
+        Node<T> previous = null;
+        Node<T> next;
+
+        while (current != null) {
+            next = current.next;
+            current.next = previous;  // Set the current node to point backwards
+            previous = current;     // Shuffle the variables along
+            current = next;
+        }
+        return previous;    // Current now null, so return last Node looked at.
     }
 
     /**
