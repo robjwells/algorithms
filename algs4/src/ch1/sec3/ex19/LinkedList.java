@@ -1,69 +1,10 @@
 package ch1.sec3.ex19;
 
-import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements Iterable<T> {
     private Node<T> first;
-
-    public static void main(String[] args) {
-        testRemoveLast();
-        testDeleteKth();
-        testReverse();
-    }
-
-    private static void testReverse() {
-        LinkedList<Integer> list = new LinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        StdOut.println("Reverse setup:");
-        for (int i : list) {
-            StdOut.print(i + " ");
-        }
-        StdOut.println("\nReversed:");
-        list.reverse();
-        for (int i : list) {
-            StdOut.print(i + " ");
-        }
-        StdOut.println();
-    }
-
-
-    private static void testDeleteKth() {
-        LinkedList<Integer> list = new LinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-
-        for (int index = 4; index >= 0; index--) {
-            list.delete(index);
-            for (int i : list) {
-                StdOut.print(i + " ");
-            }
-            StdOut.println();
-        }
-    }
-
-    private static void testRemoveLast() {
-        LinkedList<Integer> list = new LinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-
-        for (int i : list) {
-            StdOut.print(i + " ");
-        }
-        StdOut.println();
-
-        list.removeLast();
-        for (int i : list) {
-            StdOut.print(i + " ");
-        }
-        StdOut.println();
-    }
 
     /**
      * Remove the node immediately after the given <tt>node</tt>.
