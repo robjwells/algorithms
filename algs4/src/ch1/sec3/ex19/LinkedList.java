@@ -94,17 +94,6 @@ public class LinkedList<T> implements Iterable<T> {
         return first.info.compareTo(maxRest) > 0 ? first.info : maxRest;
     }
 
-
-    /**
-     * Reverse the <tt>LinkedList</tt> in place by calling the <tt>reverse</tt> static method
-     * with the current <tt>first</tt> <tt>Node</tt>.
-     * <p>
-     * Ex 1.3.30.
-     */
-    public void reverse() {
-        first = reverse(first);
-    }
-
     /**
      * Destructively reverse the linked list of nodes where <tt>first</tt> is at the start.
      *
@@ -128,6 +117,16 @@ public class LinkedList<T> implements Iterable<T> {
             current = next;
         }
         return previous;    // Current now null, so return last Node looked at.
+    }
+
+    /**
+     * Reverse the <tt>LinkedList</tt> in place by calling the <tt>reverse</tt> static method
+     * with the current <tt>first</tt> <tt>Node</tt>.
+     * <p>
+     * Ex 1.3.30.
+     */
+    public void reverse() {
+        first = reverse(first);
     }
 
     /**
