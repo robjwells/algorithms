@@ -14,7 +14,7 @@ public class LinkedList<T> implements Iterable<T> {
         testReverse();
     }
 
-    static void testReverse() {
+    private static void testReverse() {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(1);
         list.add(2);
@@ -32,7 +32,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
 
-    static void testDeleteKth() {
+    private static void testDeleteKth() {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(1);
         list.add(2);
@@ -47,7 +47,7 @@ public class LinkedList<T> implements Iterable<T> {
         }
     }
 
-    static void testRemoveLast() {
+    private static void testRemoveLast() {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(1);
         list.add(2);
