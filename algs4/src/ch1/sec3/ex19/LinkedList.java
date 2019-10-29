@@ -3,8 +3,8 @@ package ch1.sec3.ex19;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<T> implements Iterable<T> {
-    private Node<T> first;
+public class LinkedList<Item> implements Iterable<Item> {
+    private Node<Item> first;
 
     /**
      * Remove the node immediately after the given <tt>node</tt>.
@@ -62,11 +62,11 @@ public class LinkedList<T> implements Iterable<T> {
         if (first == null) {
             return null;
         }
-        T max = first.info;
+        T max = first.item;
         Node<T> current = first.next;
         while (current != null) {
-            if (current.info.compareTo(max) > 0) {
-                max = current.info;
+            if (current.item.compareTo(max) > 0) {
+                max = current.item;
             }
             current = current.next;
         }
@@ -89,9 +89,9 @@ public class LinkedList<T> implements Iterable<T> {
         }
         T maxRest = recursiveMax(first.next);
         if (maxRest == null) {
-            return first.info;
+            return first.item;
         }
-        return first.info.compareTo(maxRest) > 0 ? first.info : maxRest;
+        return first.item.compareTo(maxRest) > 0 ? first.item : maxRest;
     }
 
     /**
@@ -136,18 +136,18 @@ public class LinkedList<T> implements Iterable<T> {
      *
      * @param key the value to search for
      */
-    void remove(T key) {
+    void remove(Item key) {
         // Handle the key-containing nodes at the front
-        while (first != null && first.info.equals(key)) {
+        while (first != null && first.item.equals(key)) {
             first = first.next;
         }
         if (first == null) {
             return;
         }
-        Node<T> previous = first;
-        Node<T> current = first.next;
+        Node<Item> previous = first;
+        Node<Item> current = first.next;
         while (current != null) {
-            if (current.info.equals(key)) {
+            if (current.item.equals(key)) {
                 previous.next = current.next;
             }
             current = current.next;
@@ -159,9 +159,9 @@ public class LinkedList<T> implements Iterable<T> {
      *
      * @param info the value to put at the head of the list
      */
-    void add(T info) {
-        Node<T> node = new Node<>();
-        node.info = info;
+    void add(Item info) {
+        Node<Item> node = new Node<>();
+        node.item = info;
         node.next = first;
         first = node;
     }
@@ -179,8 +179,8 @@ public class LinkedList<T> implements Iterable<T> {
             return;
         }
 
-        Node<T> previous = first;
-        Node<T> current = first.next;
+        Node<Item> previous = first;
+        Node<Item> current = first.next;
         while (current.next != null) {
             previous = current;
             current = current.next;
@@ -197,8 +197,8 @@ public class LinkedList<T> implements Iterable<T> {
      * @param k the position of the element to remove (zero-based)
      */
     void delete(int k) {
-        Node<T> previous = null;
-        Node<T> current = first;
+        Node<Item> previous = null;
+        Node<Item> current = first;
         while (current != null && k > 0) {
             previous = current;
             current = current.next;
@@ -222,10 +222,10 @@ public class LinkedList<T> implements Iterable<T> {
      * @param key the value to search for
      * @return true if <tt>key</tt> was found, else false
      */
-    boolean find(T key) {
-        Node<T> current = first;
+    boolean find(Item key) {
+        Node<Item> current = first;
         while (current != null) {
-            if (current.info.equals(key)) {
+            if (current.item.equals(key)) {
                 return true;
             }
             current = current.next;
@@ -234,9 +234,9 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            private Node<T> current = first;
+    public Iterator<Item> iterator() {
+        return new Iterator<Item>() {
+            private Node<Item> current = first;
 
             @Override
             public boolean hasNext() {
@@ -244,19 +244,19 @@ public class LinkedList<T> implements Iterable<T> {
             }
 
             @Override
-            public T next() {
+            public Item next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                T info = current.info;
+                Item info = current.item;
                 current = current.next;
                 return info;
             }
         };
     }
 
-    static class Node<T> {
-        T info;
-        Node<T> next;
+    static class Node<Item> {
+        Item item;
+        Node<Item> next;
     }
 }
