@@ -102,10 +102,6 @@ public class LinkedList<Item> implements Iterable<Item> {
      * @return the new first <tt>Node</tt> in the reversed list (previously the end <tt>Node</tt>).
      */
     private static <T> Node<T> reverse(Node<T> first) {
-        if (first == null) {
-            return null;
-        }
-
         Node<T> current = first;
         Node<T> previous = null;
         Node<T> next;
