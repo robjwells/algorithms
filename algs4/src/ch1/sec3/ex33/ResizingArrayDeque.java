@@ -13,7 +13,7 @@ public class ResizingArrayDeque<Item> implements Deque<Item> {
 
     public static void main(String[] args) {
         ResizingArrayDeque<String> d = new ResizingArrayDeque<>();
-        List<String> instructions = List.of("L1", "R2", "L3", "R4", "L5");
+        List<String> instructions = List.of("L1", "R2", "L3", "R4", "L5", "L6", "L7", "L8");
         for (String inst : instructions) {
             if (inst.startsWith("L")) {
                 d.pushLeft(inst);
@@ -49,49 +49,14 @@ public class ResizingArrayDeque<Item> implements Deque<Item> {
     }
 
     private void resize(int maxSize) {
-        System.out.println(Arrays.toString(data));
         Item[] resizedArray = (Item[]) new Object[maxSize];
-        int target = 0;
-
-        /*
-            Indexes where you find the end elements (those elements which would
-            be returned by popLeft() and popRight(), respectively).
-        */
-        int frontmostIndex = indexToRight(front);
-        int rearmostIndex = indexToLeft(rear);
-
-        /*
-            A straight-through run of elements:
-            [ABCD    ]
-            [  ABCD  ]
-            [    ABCD]
-         */
-        if (frontmostIndex <= rearmostIndex) {
-            for (int source = frontmostIndex; source <= rearmostIndex; source++) {
-                resizedArray[target] = data[source];
-                target++;
-            }
-        }
-        /*
-            Elements wrap around the ends of the array:
-            [BCD    A]
-            [CD    AB]
-            [D    ABC]
-         */
-        else {
-            for (int source = frontmostIndex; source < data.length; source++) {
-                resizedArray[target] = data[source];
-                target++;
-            }
-            for (int source = 0; source <= rearmostIndex; source++) {
-                resizedArray[target] = data[source];
-                target++;
-            }
+        int firstIndex = indexToRight(front);
+        for (int idx = 0; idx < size; idx++) {
+            resizedArray[idx] = data[intToIndex(firstIndex + idx)];
         }
         front = resizedArray.length - 1;
-        rear = target;
+        rear = size;
         data = resizedArray;
-        System.out.println(Arrays.toString(data));
     }
 
     private void halveStorageIfNecessary() {
@@ -110,16 +75,16 @@ public class ResizingArrayDeque<Item> implements Deque<Item> {
         }
     }
 
-    private int moveIndex(int currentIndex, int amount) {
-        return Math.floorMod(currentIndex + amount, data.length);
+    private int intToIndex(int i) {
+        return Math.floorMod(i, data.length);
     }
 
     private int indexToLeft(int currentIndex) {
-        return moveIndex(currentIndex, -1);
+        return intToIndex(currentIndex - 1);
     }
 
     private int indexToRight(int currentIndex) {
-        return moveIndex(currentIndex, 1);
+        return intToIndex(currentIndex + 1);
     }
 
     @Override
