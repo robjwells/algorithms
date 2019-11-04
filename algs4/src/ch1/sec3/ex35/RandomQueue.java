@@ -4,10 +4,11 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class RandomQueue<Item> {
+public class RandomQueue<Item> implements Iterable<Item> {
     private static final int MINIMUM_SIZE = 10;
     @SuppressWarnings("unchecked")
     private Item[] data = (Item[]) new Object[10];
@@ -24,6 +25,12 @@ public class RandomQueue<Item> {
                 StdOut.print(q.dequeue());
             }
             StdOut.println();
+        }
+
+        StdOut.println("From iterator:");
+        nums.forEach(q::enqueue);
+        for (int n : q) {
+            StdOut.print(n);
         }
     }
 
@@ -66,4 +73,24 @@ public class RandomQueue<Item> {
         }
     }
 
+    @Override
+    public Iterator<Item> iterator() {
+        Item[] dataCopy = Arrays.copyOf(data, size);
+        StdRandom.shuffle(dataCopy);
+
+        return new Iterator<Item>() {
+            private final Item[] shuffledData = dataCopy;
+            private int cursor = 0;
+
+            @Override
+            public boolean hasNext() {
+                return cursor < shuffledData.length;
+            }
+
+            @Override
+            public Item next() {
+                return shuffledData[cursor++];
+            }
+        };
+    }
 }
