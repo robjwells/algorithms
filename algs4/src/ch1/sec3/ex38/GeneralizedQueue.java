@@ -1,6 +1,7 @@
 package ch1.sec3.ex38;
 
 public interface GeneralizedQueue<Item> {
+    int size(); // Not in the API described in the book but too useful not to include
     boolean isEmpty();
     void insert(Item x);
 

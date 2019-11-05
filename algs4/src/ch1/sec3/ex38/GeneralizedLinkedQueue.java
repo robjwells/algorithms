@@ -33,6 +33,7 @@ public class GeneralizedLinkedQueue<Item> implements GeneralizedQueue<Item> {
         }
     }
 
+    @Override
     public int size() {
         return size;
     }
