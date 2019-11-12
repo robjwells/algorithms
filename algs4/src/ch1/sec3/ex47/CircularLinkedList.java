@@ -101,6 +101,8 @@ public class CircularLinkedList<Item> {
         Node thisFront = last.next;
         this.last.next = other.last.next;
         other.last.next = thisFront;
+        // Reset the pointer to the last node
+        last = other.last;
 
         // Update size and empty other list
         this.size += other.size;
