@@ -80,6 +80,34 @@ public class CircularLinkedList<Item> {
         return last == null;
     }
 
+    public int size() {
+        return size;
+    }
+
+    /**
+     * Destructively place all of the items of <tt>other</tt> in order at the
+     * end of this list, after which <tt>other</tt> will be made empty.
+     *
+     * For instance, if this list is [A B C], with A at the front and C at the end,
+     * and the other is [D E F], then the resulting list will be [A B C D E F].
+     *
+     * @param other the list whose items will be emptied and its items placed
+     *              in order at the end of this circular linked list.
+     */
+    public void catenate(CircularLinkedList<Item> other) {
+        if (other.isEmpty()) return;
+
+        // Link the two lists together
+        Node thisFront = last.next;
+        this.last.next = other.last.next;
+        other.last.next = thisFront;
+
+        // Update size and empty other list
+        this.size += other.size;
+        other.size = 0;
+        other.last = null;
+    }
+
     /**
      * A singly-linked-list node class that wraps a generic Item.
      */
