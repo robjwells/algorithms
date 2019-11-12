@@ -87,7 +87,7 @@ public class CircularLinkedList<Item> {
     /**
      * Destructively place all of the items of <tt>other</tt> in order at the
      * end of this list, after which <tt>other</tt> will be made empty.
-     *
+     * <p>
      * For instance, if this list is [A B C], with A at the front and C at the end,
      * and the other is [D E F], then the resulting list will be [A B C D E F].
      *
@@ -108,6 +108,21 @@ public class CircularLinkedList<Item> {
         this.size += other.size;
         other.size = 0;
         other.last = null;
+    }
+
+    @Override
+    public String toString() {
+        if (last == null) return "[ ]";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ");
+        Node current = last.next;
+        while (current != last) {
+            sb.append(current.item).append(" ");
+            current = current.next;
+        }
+        sb.append(last.item).append(" ]");
+        return sb.toString();
     }
 
     /**
