@@ -34,6 +34,11 @@ public class LinkedSteque<Item> implements Steque<Item> {
     }
 
     @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
     public void push(Item item) {
         Node newNode = new Node(item);
         newNode.next = front;

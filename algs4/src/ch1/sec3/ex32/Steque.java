@@ -5,4 +5,5 @@ public interface Steque<Item> {
     Item pop();
     void enqueue(Item item);
     int size();
+    boolean isEmpty();
 }
