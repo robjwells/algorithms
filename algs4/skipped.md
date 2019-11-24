@@ -9,6 +9,7 @@
 | 1.1.39      | Experimental       |
 | 1.2.18      | Experimental/Stats |
 | 1.3.49      | Very complicated   |
+| 1.4.09      | Mathematical       |
 
 ## Elaboration
 
